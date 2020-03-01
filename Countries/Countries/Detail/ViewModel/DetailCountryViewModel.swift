@@ -22,7 +22,7 @@ final class DetailCountryViewModel {
     }
 
     var flagURL: URL {
-        return URL(string: "https://example.com/high_resolution_image.png") ?? URL(fileURLWithPath: "")
+        return URL(string: country.flag) ?? URL(fileURLWithPath: "")
     }
 
     var population: String {
