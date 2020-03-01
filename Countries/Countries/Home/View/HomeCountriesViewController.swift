@@ -57,6 +57,7 @@ final class HomeCountriesViewController: UIViewController {
         self.countriesDelegate = DelegateCountriesTableView(viewModel: self.viewModel)
         self.countriesDatasource = DatasourceCountriesTableView(viewModel: self.viewModel)
         super.init(nibName: nil, bundle: nil)
+        self.countriesDelegate.set(delegate: self)
     }
 
     @available(*, unavailable)
@@ -170,6 +171,14 @@ extension HomeCountriesViewController: ViewConfiguration {
         countriesTableView.dataSource = countriesDatasource
         countriesTableView.delegate = countriesDelegate
         loadingView?.isLoading(false)
+    }
+}
+
+extension HomeCountriesViewController: DelegateCountriesTableViewProtocol {
+    func countrySelected(country: Country) {
+        let detailCountryViewModel: DetailCountryViewModel = DetailCountryViewModel(country: country)
+        let detailCountryViewController: DetailCountryViewController = DetailCountryViewController(viewModel: detailCountryViewModel)
+        self.navigationController?.pushViewController(detailCountryViewController, animated: true)
     }
 }
 

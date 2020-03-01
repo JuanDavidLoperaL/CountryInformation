@@ -9,17 +9,28 @@
 import Foundation
 import UIKit
 
+protocol DelegateCountriesTableViewProtocol {
+    func countrySelected(country: Country)
+}
+
 final class DelegateCountriesTableView: NSObject, UITableViewDelegate {
 
     //MARK:- Properties
     private let viewModel: HomeCountriesViewModelProtocol
+    private var delegate: DelegateCountriesTableViewProtocol?
 
     init(viewModel: HomeCountriesViewModelProtocol = HomeCountriesViewModel()) {
         self.viewModel = viewModel
+
+    }
+
+    func set(delegate: DelegateCountriesTableViewProtocol) {
+        self.delegate = delegate
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let country: Country = viewModel.getCountryInformationsBy(index: indexPath.row)
+        delegate?.countrySelected(country: country)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

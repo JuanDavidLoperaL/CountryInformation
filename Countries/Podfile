@@ -7,6 +7,7 @@ target 'Countries' do
 
   # Pods for Countries
 pod 'SnapKit', '~> 5.0.0'
+pod 'Kingfisher', '~> 5.0'
 
   target 'CountriesTests' do
     inherit! :search_paths
