@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class CountryTableViewCell: UITableViewCell {
+final class CountryTableViewCell: UITableViewCell {
 
     //MARK:- IBOutlet
     private lazy var subContainerView: UIView = {

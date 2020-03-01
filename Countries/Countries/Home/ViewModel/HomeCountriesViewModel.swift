@@ -14,6 +14,7 @@ protocol HomeCountriesViewModelProtocol {
     func getCountryNameBy(index: Int) -> String
     func getCountryCurrencyBy(index: Int) -> String
     func getCountryPopulationBy(index: Int) -> String
+    func getCountryInformationsBy(index: Int) -> Country
 }
 
 final class HomeCountriesViewModel: HomeCountriesViewModelProtocol {
@@ -51,26 +52,21 @@ final class HomeCountriesViewModel: HomeCountriesViewModelProtocol {
     }
 
     func getCountryNameBy(index: Int) -> String {
-        if index <= countries.count {
-            return countries[index].name
-        } else {
-            return ""
-        }
+        return index <= countries.count ? countries[index].name : ""
     }
 
     func getCountryCurrencyBy(index: Int) -> String {
-        if index <= countries.count {
-            return countries[index].currencies[0].name
-        } else {
-            return ""
-        }
+        return index <= countries.count ? countries[index].currencies[0].name : ""
     }
 
     func getCountryPopulationBy(index: Int) -> String {
-        if index <= countries.count {
-            return String(countries[index].population)
-        } else {
-            return ""
-        }
+        return index <= countries.count ? String(countries[index].population) : ""
+    }
+
+    func getCountryInformationsBy(index: Int) -> Country {
+        let currencyNil = CurrencyCountry(code: "", name: "", symbol: "")
+        let laguageNil = CountryLanguage(name: "")
+        let countryNil = Country(name: "", callingCodes: [""], capital: "", region: "", subregion: "", population: 0, borders: [""], currencies: [currencyNil], languages: [laguageNil], flag: "")
+        return index <= countries.count ? countries[index] : countryNil
     }
 }
