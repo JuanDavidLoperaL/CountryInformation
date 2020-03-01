@@ -25,7 +25,7 @@ final class HomeCountriesAPI: HomeCountriesAPIProtocol {
     private let defaultSession: URLSession = URLSession(configuration: .default)
     private var dataTask: URLSessionDataTask?
 
-    init(baseURL: String) {
+    init(baseURL: String = "") {
         self.baseURL = baseURL
     }
 
